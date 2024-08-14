@@ -19,3 +19,17 @@ class List():
             string_list += str(current_node.value) + "\n"
             current_node = current_node.get_next_node()
         return string_list
+    
+    def remove_node(self, value_to_remove):
+        current_node = self.head_node
+        if current_node == value_to_remove:
+            head_node = current_node.get_next_node()
+        else:
+            while current_node:
+                next_node = current_node.get_next_node()
+                if next_node == value_to_remove:
+                    current_node.next_node = next_node.get_next_node()
+                    current_node = None
+                else:
+                    current_node = next_node
+
