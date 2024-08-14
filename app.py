@@ -4,9 +4,15 @@
 # Choose length of book. - Nice to have
 # Choose if book is standalone or part of a series - Nice to have
 
-from node import *
+from linkedlist import List
 
 
-my_node = node("Antony")
+linked_list = List()
+linked_list.insert_beginning("Antony")
 
-print(my_node.get_value())
+print(linked_list.stringify_list())
+
+linked_list.insert_beginning("Liz")
+linked_list.insert_beginning("Chloe")
+
+print(linked_list.stringify_list())
