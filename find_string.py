@@ -9,7 +9,10 @@ def find_string(input, column_number):
         genres = []
         word = ""
         for row in csv_reader:
-            print(row[column_number])
+            if len(row[column_number]) <= 2:
+                continue
+            else:
+                print(len(row[column_number]))
 
 
 find_string('goodreads_data.csv', 3)
