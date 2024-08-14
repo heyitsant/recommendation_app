@@ -5,7 +5,7 @@
 # Choose if book is standalone or part of a series - Nice to have
 
 from linkedlist import List
-from find_string import find_string
+from find_string import *
 
 genres = find_string('goodreads_data.csv', 3)
 

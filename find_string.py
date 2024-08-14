@@ -10,17 +10,17 @@ def find_string(input, column_number):
     with open(input, encoding="utf-8") as csv_file:
         csv_reader = csv.reader(csv_file, delimiter = ',')
         genres = []
-        word = ""
         
         for row in csv_reader:
             if len(row[column_number]) <= 2:
                 continue
             else:
-                #print(row[3])
                 list = row[3].split("', '")
                 for item in list:
                     if item not in genres:
                         genres.append(item)
+        
+        # This is a dirty bit of code to clean up any further undesireable characters.
         idx = 0
         for item in genres:
             for char in item:
@@ -28,6 +28,14 @@ def find_string(input, column_number):
                     genres[idx] = item.replace(char,'')
                     item = item.replace(char,'')  
             idx += 1
-        print(genres)
 
-find_string('goodreads_data.csv', 3)
+def book_info(input):
+    with open(input, encoding="utf-8") as csv_file:
+        csv_reader = csv.reader(csv_file, delimiter = ',')
+        for row in csv_reader:
+            print("Author: " + row[1])
+            print("Title: " + row[0])
+            print("Description: " + row[2])
+            print("Rating: " + row[4])
+
+book_info('goodreads_data.csv')
