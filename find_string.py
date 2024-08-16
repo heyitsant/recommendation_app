@@ -1,7 +1,8 @@
 import csv
 import os
+import re
 
-os.chdir(r'D:\OneDrive\Code\Python\Portfolio Projects\recommendation_app')
+#os.chdir(r'D:\OneDrive\Code\Python\Portfolio Projects\recommendation_app')
 
 def find_string(input, column_number):
     # Function to find and separate words in long string.
@@ -28,14 +29,24 @@ def find_string(input, column_number):
                     genres[idx] = item.replace(char,'')
                     item = item.replace(char,'')  
             idx += 1
+    return genres
 
 def book_info(input):
     with open(input, encoding="utf-8") as csv_file:
         csv_reader = csv.reader(csv_file, delimiter = ',')
+        books = []
         for row in csv_reader:
-            print("Author: " + row[1])
-            print("Title: " + row[0])
-            print("Description: " + row[2])
-            print("Rating: " + row[4])
+            genre = re.search('\[(.*)\]', row[3])
+            values = genre.group(1)
+            books.append([row[1], row[0], row[2], row[4], values.split("', '")])
+            #print(row[1]) # Author
+            #print(row[0]) # Title
+            #print(row[2]) # Description
+            #print(row[4]) # Rating
+    #print(books)
+    return(books)
 
 book_info('goodreads_data.csv')
+
+with open('books.py', 'w', encoding="utf-8") as b:
+            b.write("genres = " + str(find_string('goodreads_data.csv', 3)) + '\n\n' + "books = " + str(book_info('goodreads_data.csv')))
