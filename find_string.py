@@ -36,9 +36,9 @@ def book_info(input):
         csv_reader = csv.reader(csv_file, delimiter = ',')
         books = []
         for row in csv_reader:
-            genre = re.search('\[(.*)\]', row[3])
-            values = genre.group(1)
-            books.append([row[1], row[0], row[2], row[4], values.split("', '")])
+            genre = [item for item in row[3].split(", ") if item is not "[" or "]"]#re.search('\[(.*)\]', row[3])
+            #values = genre.group(1)
+            books.append([row[1], row[0], row[2], row[4], genre])
             #print(row[1]) # Author
             #print(row[0]) # Title
             #print(row[2]) # Description
