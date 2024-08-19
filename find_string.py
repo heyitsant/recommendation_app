@@ -42,15 +42,7 @@ def book_info(input):
                     continue
                 else:
                     new_genres += letter
-            #print(new_genres)
-            #genre = [item for item in row[3].split(", ") if item is not "[" or "]"]#re.search('\[(.*)\]', row[3])
-            #values = genre.group(1)
             books.append([row[1], row[0], row[2], row[4], new_genres.split(", ")])
-            #print(row[1]) # Author
-            #print(row[0]) # Title
-            #print(row[2]) # Description
-            #print(row[4]) # Rating
-    #print(books)
     return(books)
 
 book_info('goodreads_data.csv')

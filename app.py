@@ -5,17 +5,15 @@
 # Choose if book is standalone or part of a series - Nice to have
 
 from linkedlist import List
-from find_string import *
-
-genres = find_string('goodreads_data.csv', 3)
+import csv
 
 
-linked_list = List()
-linked_list.insert_beginning("Antony")
+#linked_list = List()
+#linked_list.insert_beginning("Antony")
 
-print(linked_list.stringify_list())
+#print(linked_list.stringify_list())
 
-linked_list.insert_beginning("Liz")
-linked_list.insert_beginning("Chloe")
+#linked_list.insert_beginning("Liz")
+#linked_list.insert_beginning("Chloe")
 
-print(linked_list.stringify_list())
+#print(linked_list.stringify_list())
