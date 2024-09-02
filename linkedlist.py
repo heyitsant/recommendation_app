@@ -22,7 +22,7 @@ class List():
     
     def remove_node(self, value_to_remove):
         current_node = self.head_node
-        if current_node == value_to_remove:
+        if current_node.value == value_to_remove:
             head_node = current_node.get_next_node()
         else:
             while current_node:
