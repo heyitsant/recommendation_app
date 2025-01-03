@@ -19,11 +19,9 @@ def book_data():
     for genre in genres:
         book_sublist = List()
         for book in books:
-            for book_genre in book[4]:
-                if book_genre == genre:
-                    book_sublist.insert_beginning(book)
-                continue
-            continue
+            #for book_genre in book[4]:
+            if genre in book[4]:
+                book_sublist.insert_beginning(book)
         book_data_list.insert_beginning(book_sublist)
     return book_data_list
 
@@ -47,17 +45,36 @@ while len(selected_genre) == 0:
                 matching_types.append(type_list_head.get_value())
         type_list_head = type_list_head.get_next_node()
     print("\n")
-    for genre in matching_types:
-        print(genre)
 
-    if len(matching_types) == 1:
+    if len(matching_types) > 1:
+        counter = 1
+        print("We have found multiple options for \"" + user_input + "\".\n")
+        for genre in matching_types:
+            print(str(counter) + ". " + genre)
+            counter += 1
+        choice = int(input("\nPlease enter a choice from above: "))
+        user_choice = matching_types[choice - 1]
+        select_genre = str(input("\nIs " + user_choice + " your chosen genre?\nEnter y for yes or n for no\n")).lower()
+        if select_genre == "y":
+            selected_genre = user_choice
+
+    
+    elif len(matching_types) == 1:
         select_genre = str(input("\n" + matching_types[0] +" is the only matching genre for your choice.\nDo you want to see the books that match this genre?\nEnter y for yes or n for no\n")).lower()
-
         if select_genre == "y":
             selected_genre = matching_types[0]
-            print("Selected genre: " + selected_genre)
-            book_list_head = my_book_list.get_head_node()
-            while book_list_head.get_next_node() is not None:
-                sublist_head = book_list_head.get_value().get_head_node()
-                print(sublist_head.value)
+    
+        
+    print("Selected genre: " + selected_genre)
+    book_list_head = my_book_list.get_head_node()
+    sublist_head = book_list_head.get_value().get_head_node()
+    while book_list_head.get_next_node() is not None:
+        sublist_head = book_list_head.get_value()
+        if selected_genre in sublist_head.get_value()[4]:
+            while sublist_head.get_next_node() is not None:
+                print(sublist_head.get_value()[1])
+                sublist_head = sublist_head.get_next_node()
+        book_list_head = sublist_head.get_next_node()
+
+                
 
